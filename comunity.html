@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VORTEX · Rullz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        /* ===== RESET & GLOBAL ===== */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:#08080e; color:#e4e4f0; overflow-x:hidden; padding:0 20px; }
+        body::before { content:''; position:fixed; inset:0; z-index:-2; background:radial-gradient(ellipse at 15% 30%, rgba(0,255,200,0.05) 0%, transparent 55%), radial-gradient(ellipse at 85% 70%, rgba(168,85,247,0.05) 0%, transparent 55%), #08080e; }
+        body::after { content:''; position:fixed; inset:0; z-index:-1; background-image:radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.15), transparent), radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.1), transparent), radial-gradient(2px 2px at 70% 20%, rgba(255,255,255,0.12), transparent), radial-gradient(2px 2px at 90% 80%, rgba(255,255,255,0.08), transparent), radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.15), transparent), radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,0.1), transparent), radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.12), transparent); background-size:200px 200px; background-repeat:repeat; opacity:0.6; }
+        .container { max-width:1100px; margin:0 auto; padding:30px 20px 60px; }
+
+        /* ===== HERO ===== */
+        .hero { text-align:center; padding:40px 0 20px; position:relative; }
+        .hero .badge { display:inline-block; background:rgba(0,255,200,0.10); border:1px solid rgba(0,255,200,0.25); border-radius:40px; padding:6px 24px; font-size:0.7rem; text-transform:uppercase; letter-spacing:4px; color:#00ffcc; margin-bottom:18px; backdrop-filter:blur(4px); }
+        .hero h1 { font-family:'Orbitron',sans-serif; font-size:clamp(3.2rem,14vw,6rem); font-weight:900; background:linear-gradient(135deg,#00ffcc,#a855f7,#00ffcc); background-size:300% 300%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:gradShift 7s ease-in-out infinite; letter-spacing:6px; text-shadow:0 0 60px rgba(0,255,200,0.15); }
+        @keyframes gradShift { 0% { background-position:0% 50%; } 50% { background-position:100% 50%; } 100% { background-position:0% 50%; } }
+        .hero .sub { font-size:1.25rem; color:#a0a0b8; margin-top:14px; letter-spacing:3px; font-weight:300; }
+        .hero .developer { margin-top:18px; font-size:1.15rem; color:#b0b0c8; }
+        .hero .developer strong { background:linear-gradient(90deg,#f472b6,#a78bfa); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:800; }
+        .hero .quote-moto { margin-top:16px; font-style:italic; color:#80809a; font-size:0.95rem; letter-spacing:1px; }
+        .divider { width:100px; height:3px; background:linear-gradient(90deg,#00ffcc,#a855f7); border-radius:4px; margin:30px auto; }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title { font-family:'Orbitron',sans-serif; font-size:1.8rem; font-weight:700; margin:50px 0 24px; color:#f0f0ff; letter-spacing:1.5px; border-left:6px solid #00ffcc; padding-left:20px; }
+        .section-title i { color:#00ffcc; margin-right:12px; }
+        .section-sub { font-size:1.1rem; color:#b0b0c8; margin-top:-10px; margin-bottom:30px; line-height:1.6; }
+
+        /* ===== KARTU FITUR ===== */
+        .card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:26px; margin:30px 0 50px; }
+        .card { background:rgba(18,18,35,0.7); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.05); border-radius:28px; padding:30px 24px; transition:transform 0.25s, border-color 0.3s, box-shadow 0.3s; box-shadow:0 10px 35px rgba(0,0,0,0.4); }
+        .card:hover { transform:translateY(-8px); border-color:rgba(0,255,200,0.30); box-shadow:0 16px 50px rgba(0,255,200,0.07); }
+        .card .icon { font-size:2.6rem; margin-bottom:14px; display:block; }
+        .card h3 { font-size:1.35rem; font-weight:700; color:#ffffff; margin-bottom:8px; }
+        .card p { color:#b0b0c8; font-size:0.95rem; line-height:1.75; }
+        .card .highlight { color:#00ffcc; font-weight:600; }
+
+        /* ===== TABEL ROLE ===== */
+        .role-table-wrap { background:rgba(18,18,35,0.6); backdrop-filter:blur(8px); border-radius:28px; padding:20px 0 10px; border:1px solid rgba(255,255,255,0.06); overflow-x:auto; margin:30px 0 40px; }
+        .role-table { width:100%; border-collapse:collapse; font-size:0.95rem; min-width:600px; }
+        .role-table thead th { text-align:left; padding:16px 20px; background:rgba(0,255,200,0.08); color:#00ffcc; font-weight:700; text-transform:uppercase; letter-spacing:1px; border-bottom:2px solid rgba(0,255,200,0.2); }
+        .role-table tbody td { padding:14px 20px; border-bottom:1px solid rgba(255,255,255,0.04); vertical-align:top; line-height:1.6; }
+        .role-table tbody tr:last-child td { border-bottom:none; }
+        .role-table .role-badge { display:inline-block; padding:4px 16px; border-radius:40px; font-weight:700; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.5px; }
+        .role-badge.member { background:rgba(0,255,200,0.15); color:#00ffcc; border:1px solid rgba(0,255,200,0.25); }
+        .role-badge.reseller { background:rgba(255,170,51,0.15); color:#ffaa33; border:1px solid rgba(255,170,51,0.25); }
+        .role-badge.admin { background:rgba(255,51,102,0.15); color:#ff3366; border:1px solid rgba(255,51,102,0.25); }
+        .role-table .fitur-list { color:#d0d0e0; }
+        .role-table .fitur-list strong { color:#ffffff; }
+        .role-table .keterangan { color:#a0a0b8; font-size:0.9rem; }
+        .role-note { padding:0 20px 20px; color:#80809a; font-size:0.9rem; font-style:italic; border-top:1px solid rgba(255,255,255,0.04); margin-top:10px; padding-top:16px; }
+
+        /* ===== QUOTE & PERINGATAN ===== */
+        .quote-block { background:rgba(0,255,200,0.04); border-left:5px solid #00ffcc; border-radius:0 24px 24px 0; padding:28px 34px; margin:45px 0; font-style:italic; color:#c8c8e0; font-size:1.1rem; line-height:1.8; }
+        .quote-block strong { color:#00ffcc; font-style:normal; }
+        .warning-box { background:rgba(255,0,0,0.04); border-radius:24px; padding:28px 32px; border:1px solid rgba(255,0,0,0.10); margin:40px 0; }
+        .warning-box p { color:#d0d0e0; line-height:1.8; }
+        .warning-box strong { color:#ff6b6b; }
+        .warning-box .highlight { color:#00ffcc; font-weight:600; }
+
+        /* ===== SOSIAL ===== */
+        .social-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px; margin:30px 0 20px; }
+        .social-btn { display:flex; align-items:center; justify-content:center; gap:14px; padding:16px 20px; border-radius:60px; font-weight:700; font-size:1.1rem; text-decoration:none; color:#fff; transition:transform 0.2s, box-shadow 0.2s; box-shadow:0 6px 20px rgba(0,0,0,0.25); border:none; cursor:pointer; }
+        .social-btn i { font-size:1.8rem; }
+        .social-btn:hover { transform:scale(1.04); }
+        .btn-wa { background:linear-gradient(135deg,#25D366,#128C7E); box-shadow:0 8px 30px rgba(37,211,102,0.25); }
+        .btn-wa:hover { box-shadow:0 12px 40px rgba(37,211,102,0.45); }
+        .btn-tiktok1 { background:linear-gradient(135deg,#000,#1a1a2e); border:2px solid #25F4EE; box-shadow:0 8px 30px rgba(37,244,238,0.10); }
+        .btn-tiktok1:hover { box-shadow:0 12px 40px rgba(37,244,238,0.20); }
+        .btn-tiktok2 { background:linear-gradient(135deg,#1a0a2e,#000); border:2px solid #FE2C55; box-shadow:0 8px 30px rgba(254,44,85,0.10); }
+        .btn-tiktok2:hover { box-shadow:0 12px 40px rgba(254,44,85,0.20); }
+        .btn-wa2 { background:linear-gradient(135deg,#075E54,#128C7E); box-shadow:0 8px 30px rgba(37,211,102,0.15); }
+        .btn-wa2:hover { box-shadow:0 12px 40px rgba(37,211,102,0.35); }
+        .label-btn { display:block; font-size:0.7rem; font-weight:300; opacity:0.7; margin-top:2px; }
+
+        /* ===== FOOTER ===== */
+        .footer { margin-top:60px; text-align:center; font-size:0.9rem; color:#606080; border-top:1px solid rgba(255,255,255,0.04); padding-top:32px; }
+        .footer .love { color:#f472b6; }
+        .footer span { color:#00ffcc; }
+        .footer .motto { margin-top:6px; font-size:0.8rem; color:#50506a; letter-spacing:1px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width:640px) { .container { padding:20px 10px 40px; } .hero h1 { font-size:2.8rem; letter-spacing:3px; } .hero .sub { font-size:1rem; } .section-title { font-size:1.4rem; padding-left:14px; } .social-grid { grid-template-columns:1fr; } .social-btn { font-size:1rem; padding:14px 18px; } .quote-block { padding:20px 22px; font-size:1rem; } .warning-box { padding:20px 18px; } .role-table-wrap { padding:10px 0; } .role-table { font-size:0.85rem; min-width:480px; } .role-table thead th, .role-table tbody td { padding:10px 14px; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="badge">⚡ Next‑Gen RAT</div>
+        <h1>VORTEX</h1>
+        <p class="sub">Remote Access Trojan · Keamanan Siber · Edukasi</p>
+        <p class="developer">Dari <strong>Rullz</strong> — untuk pembelajaran &amp; pengujian etis</p>
+        <p class="quote-moto">“Ketahui sistem, lindungi diri, sebarkan ilmu.”</p>
+        <div class="divider"></div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- ===== BAGIAN 1 : TENTANG VORTEX (panjang) ===== -->
+    <!-- ============================================================ -->
+    <section>
+        <h2 class="section-title"><i>🌀</i> Tentang VORTEX</h2>
+        <p style="font-size:1.05rem; color:#c8c8e0; max-width:830px; line-height:1.8;">
+            <strong>VORTEX</strong> adalah sebuah <strong>Remote Access Trojan (RAT)</strong> generasi terbaru yang dikembangkan oleh <strong>Rullz</strong> dengan tujuan utama untuk keperluan <em>penetration testing</em>, <em>security research</em>, dan edukasi keamanan siber. Berbeda dengan RAT pada umumnya yang sering disalahgunakan, VORTEX hadir dengan pendekatan transparan dan etis, di mana setiap fitur dirancang untuk membantu para profesional, mahasiswa, dan penggiat keamanan memahami bagaimana serangan jarak jauh bekerja sehingga mereka dapat membangun pertahanan yang lebih tangguh.
+        </p>
+        <p style="margin-top:16px; color:#b0b0c8; line-height:1.8;">
+            Dengan arsitektur berbasis <span class="highlight">Firebase Realtime Database</span>, VORTEX memungkinkan komunikasi dua arah yang cepat dan stabil antara admin dan perangkat target. Semua perintah dikirim secara real‑time dan dieksekusi langsung di sisi klien tanpa perlu konfigurasi jaringan yang rumit. VORTEX juga dilengkapi dengan <span class="highlight">sistem role‑based access control</span> yang membagi pengguna menjadi tiga tingkatan — Member, Reseller, dan Admin — sehingga setiap pengguna hanya memiliki akses sesuai dengan kebutuhannya masing‑masing.
+        </p>
+        <p style="margin-top:16px; color:#a8a8c0; line-height:1.8;">
+            Kami percaya bahwa <span class="highlight">keamanan siber</span> adalah tanggung jawab bersama. Dengan mempelajari alat seperti VORTEX, Anda tidak hanya memahami cara kerja ancaman, tetapi juga dapat mengidentifikasi celah keamanan di lingkungan Anda sendiri. VORTEX adalah <strong>alat edukasi</strong> yang dirancang untuk membangun kesadaran, bukan untuk merusak. <strong>#Edukasi #Keamanan #Siber #RAT</strong>
+        </p>
+        <p style="margin-top:16px; color:#a0a0b8; line-height:1.8;">
+            Sejak diluncurkan, VORTEX telah digunakan oleh puluhan peneliti keamanan dan praktisi IT di berbagai negara. Platform ini terus diperbarui dengan fitur-fitur baru yang relevan dengan perkembangan ancaman siber terkini. Kami mengundang Anda untuk menjelajahi setiap fitur yang tersedia dan memahami potensi serta risikonya secara mendalam.
+        </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== BAGIAN 2 : ARSITEKTUR & CARA KERJA (panjang) ===== -->
+    <!-- ============================================================ -->
+    <section>
+        <h2 class="section-title"><i>🏗️</i> Arsitektur &amp; Cara Kerja</h2>
+        <p style="color:#b0b0c8; line-height:1.8;">
+            VORTEX dibangun di atas arsitektur <strong>client‑server yang terdesentralisasi</strong> menggunakan Firebase sebagai middleware. Setiap perangkat target menjalankan layanan background yang terus menerus mendengarkan perintah dari database Firebase. Admin mengirim perintah melalui dashboard web, yang kemudian ditulis ke node tertentu di Firebase. Perangkat target membaca node tersebut dan mengeksekusi perintah secara real‑time.
+        </p>
+        <p style="margin-top:12px; color:#b0b0c8; line-height:1.8;">
+            Semua komunikasi dienkripsi menggunakan <strong>SSL/TLS</strong> yang disediakan oleh Firebase, sehingga data perintah dan hasil eksekusi tidak dapat disadap oleh pihak ketiga. Selain itu, VORTEX menggunakan mekanisme <strong>token otentikasi</strong> untuk memastikan bahwa hanya admin yang sah yang dapat mengirim perintah ke target.
+        </p>
+        <p style="margin-top:12px; color:#a8a8c0; line-height:1.8;">
+            Proses eksekusi perintah di sisi klien dilakukan dengan <strong>multithreading</strong> agar tidak mengganggu kinerja perangkat target. Setiap perintah dijalankan dalam thread terpisah, dan hasilnya dikirim kembali ke Firebase dalam format JSON. Admin dapat melihat hasil eksekusi secara langsung di dashboard tanpa perlu refresh halaman.
+        </p>
+        <p style="margin-top:12px; color:#a0a0b8; line-height:1.8;">
+            Keandalan dan kecepatan menjadi prioritas utama dalam pengembangan VORTEX. Dengan latensi rata‑rata kurang dari 1 detik, VORTEX memberikan pengalaman kontrol yang sangat responsif. Fitur seperti <span class="highlight">lock</span>, <span class="highlight">flash</span>, dan <span class="highlight">sound</span> dieksekusi dalam hitungan milidetik, memberikan efek yang langsung terlihat di perangkat target.
+        </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== BAGIAN 3 : FITUR UNGGULAN (panjang + detail) ===== -->
+    <!-- ============================================================ -->
+    <section style="margin-top:20px;">
+        <h2 class="section-title"><i>⚙️</i> Fitur Unggulan VORTEX</h2>
+        <p class="section-sub">
+            VORTEX hadir dengan puluhan fitur canggih yang memungkinkan kontrol penuh terhadap perangkat target. Setiap fitur dirancang dengan mempertimbangkan aspek keamanan dan kemudahan penggunaan, sehingga baik pengguna pemula maupun profesional dapat mengoperasikannya dengan lancar. Berikut adalah penjelasan mendalam setiap fitur:
+        </p>
+        <div class="card-grid">
+
+            <!-- Lock -->
+            <div class="card">
+                <span class="icon">🔒</span>
+                <h3>Lock / Unlock</h3>
+                <p>
+                    Fitur <span class="highlight">Lock</span> memungkinkan admin mengunci layar perangkat target dengan <strong>PIN</strong> yang dapat diatur secara dinamis. Tampilan lock dirancang dengan antarmuka yang meyakinkan, menampilkan pesan dari pengirim dan efek latar belakang yang dapat dipilih (hitam, abu‑abu, atau merah). Fitur <span class="highlight">Unlock</span> dapat dilakukan dengan sekali klik melalui dashboard, tanpa memerlukan interaksi dari pengguna target. Selain itu, tersedia juga <strong>Lock V2</strong> dengan tampilan yang lebih profesional, menampilkan informasi pengirim, nomor HP, nominal, dan metode pembayaran — memberikan efek yang sangat meyakinkan bagi target.
+                </p>
+            </div>
+
+            <!-- Flash -->
+            <div class="card">
+                <span class="icon">💡</span>
+                <h3>Flash &amp; Senter</h3>
+                <p>
+                    Fitur ini memungkinkan admin untuk mengontrol lampu <span class="highlight">flash</span> (senter) pada perangkat target secara jarak jauh. Perintah <strong>Flash On</strong> akan menyalakan senter, sedangkan <strong>Flash Off</strong> mematikannya. Fitur ini sangat berguna untuk menguji respons perangkat, memberikan sinyal visual, atau sekadar sebagai alat bantu dalam skenario pengujian tertentu. Eksekusi perintah berlangsung cepat dan langsung tanpa jeda yang berarti.
+                </p>
+            </div>
+
+            <!-- Sound -->
+            <div class="card">
+                <span class="icon">🔊</span>
+                <h3>Play / Stop Sound</h3>
+                <p>
+                    Dengan fitur <span class="highlight">Play Sound</span>, admin dapat memutar file audio atau nada dering di perangkat target. Tersedia dua mode: <strong>Play Sound</strong> (standar) dan <strong>Play Sound Sacred</strong> yang menggunakan nada khusus. Perintah <span class="highlight">Stop Sound</span> akan menghentikan pemutaran audio kapan saja. Fitur ini dapat digunakan untuk menarik perhatian target, menguji kemampuan audio, atau sebagai efek kejut dalam skenario pengujian.
+                </p>
+            </div>
+
+            <!-- Lokasi -->
+            <div class="card">
+                <span class="icon">📍</span>
+                <h3>Lokasi Real‑time</h3>
+                <p>
+                    VORTEX dilengkapi dengan pelacakan <span class="highlight">lokasi GPS</span> yang sangat akurat. Data lokasi diperbarui secara <strong>real‑time setiap 1 detik</strong> dan ditampilkan langsung di peta OpenStreetMap yang terintegrasi dalam dashboard. Admin dapat melihat koordinat lintang dan bujur, serta pergerakan target secara dinamis. Fitur ini sangat penting untuk pengujian keamanan berbasis lokasi dan investigasi digital.
+                </p>
+            </div>
+
+            <!-- Open App -->
+            <div class="card">
+                <span class="icon">📱</span>
+                <h3>Open App (Akses Aplikasi)</h3>
+                <p>
+                    Admin dapat membuka berbagai aplikasi populer langsung di perangkat target tanpa perlu izin pengguna. Mendukung lebih dari <span class="highlight">15 aplikasi</span>, termasuk TikTok, YouTube, WhatsApp, Instagram, Twitter, Telegram, Google, Chrome, Gmail, Maps, Google One, Cuaca, Kalender, Galeri, dan Kamera. Fitur ini berguna untuk menguji aksesibilitas aplikasi dan perilaku pengguna saat aplikasi tertentu dibuka secara paksa.
+                </p>
+            </div>
+
+            <!-- SOS Lock -->
+            <div class="card">
+                <span class="icon">🛡️</span>
+                <h3>SOS Lock (Level Darurat)</h3>
+                <p>
+                    Mode <span class="highlight">SOS Lock</span> adalah fitur lock dengan tingkat keamanan lebih tinggi. Admin dapat mengirim pesan kustom yang akan ditampilkan di layar target, disertai dengan latar belakang yang dramatis. Tersedia juga <strong>SOS V2</strong> yang dilengkapi dengan efek animasi matrix merah, memberikan visual yang sangat menegangkan. Fitur ini dirancang untuk skenario darurat dan pengujian ketahanan psikologis target.
+                </p>
+            </div>
+
+            <!-- Hell Lock -->
+            <div class="card">
+                <span class="icon">💀</span>
+                <h3>Hell Lock</h3>
+                <p>
+                    Hell Lock adalah fitur unggulan yang menampilkan animasi <span class="highlight">matrix hijau</span> dengan tulisan teks yang bergerak, disertai dengan pesan error yang dapat dikostumisasi. Admin dapat menentukan durasi efek (dalam detik), dan setelah waktu habis, lock akan terbuka secara otomatis. Fitur ini sangat efektif untuk menciptakan ilusi sistem terkena virus atau serangan hacker, dan sering digunakan dalam skenario pengujian keamanan psikologis.
+                </p>
+            </div>
+
+            <!-- SMS, Kontak, Call Log -->
+            <div class="card">
+                <span class="icon">📨</span>
+                <h3>SMS, Kontak, Call Log</h3>
+                <p>
+                    Admin dengan role <strong>Admin</strong> dapat mengakses data sensitif target seperti <span class="highlight">riwayat SMS</span>, <span class="highlight">daftar kontak</span>, dan <span class="highlight">riwayat panggilan</span>. Data diambil secara real‑time dan ditampilkan dalam format JSON yang mudah dibaca. Fitur ini sangat berguna untuk analisis forensik digital dan pengujian keamanan data pribadi pada perangkat Android.
+                </p>
+            </div>
+
+            <!-- Set Volume & Brightness -->
+            <div class="card">
+                <span class="icon">🔧</span>
+                <h3>Set Volume &amp; Brightness</h3>
+                <p>
+                    Admin dapat mengontrol <span class="highlight">volume media</span> dan <span class="highlight">kecerahan layar</span> target dengan nilai 0–100. Perubahan diterapkan secara langsung tanpa perlu restart perangkat. Fitur ini dapat digunakan untuk mengganggu pengalaman pengguna, menguji respons sistem terhadap perubahan cepat, atau sekadar untuk keperluan iseng dalam pengujian.
+                </p>
+            </div>
+
+            <!-- Hapus File / Foto / Video -->
+            <div class="card">
+                <span class="icon">🗑️</span>
+                <h3>Hapus File / Foto / Video</h3>
+                <p>
+                    Fitur <span class="highlight">penghapusan massal</span> ini adalah salah satu fitur paling kuat dan <strong>berbahaya</strong> di VORTEX. Admin dapat menghapus <strong>semua file</strong> yang ada di penyimpanan internal perangkat target, atau hanya menghapus <strong>semua foto</strong> dan <strong>semua video</strong> secara terpisah. Proses penghapusan dilakukan secara <strong>rekursif</strong>, menjangkau semua folder dan subfolder, termasuk DCIM, Pictures, Download, Movies, dan lainnya.
+                    <br><br>
+                    <span style="color:#ff6b6b; font-weight:700;">⚠️ PERINGATAN :</span> Fitur ini <strong>tidak dapat dibatalkan</strong> dan akan menghapus data secara permanen. Gunakan hanya dalam lingkungan pengujian yang terkendali dan dengan izin pemilik perangkat. Penyalahgunaan fitur ini dapat mengakibatkan kerusakan data dan konsekuensi hukum.
+                </p>
+            </div>
+
+            <!-- Wallpaper & Reset Background -->
+            <div class="card">
+                <span class="icon">🖼️</span>
+                <h3>Wallpaper &amp; Reset Background</h3>
+                <p>
+                    VORTEX menyediakan dua fitur terkait wallpaper:
+                    <br><br>
+                    <span class="highlight">Set Wallpaper</span> — Admin dapat mengubah <strong>wallpaper</strong> perangkat target secara instan dengan mengirimkan gambar melalui perintah <strong>SET_WALLPAPER</strong>. Fitur ini sangat berguna untuk memberikan efek visual yang mengejutkan atau menyesuaikan tampilan target sesuai dengan skenario pengujian.
+                    <br><br>
+                    <span class="highlight">Reset Background</span> — Khusus untuk role <strong>Member</strong>, fitur ini memungkinkan pengembalian wallpaper target ke tampilan default (putih polos) dengan sekali klik. Cocok digunakan setelah melakukan pengujian untuk mengembalikan perangkat ke kondisi semula.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Fitur pendukung -->
+        <p style="color:#b0b0c8; margin-top:10px; line-height:1.7;">
+            Selain fitur-fitur di atas, VORTEX juga menyediakan berbagai fitur pendukung lainnya yang dapat diakses sesuai dengan role pengguna, di antaranya:
+            <span class="highlight">Toast Notification</span> untuk mengirim pesan pop‑up instan ke target,
+            <span class="highlight">Open URL</span> untuk membuka tautan di browser target,
+            <span class="highlight">System Info</span> untuk melihat detail perangkat (nama, RAM, baterai, root, bahasa),
+            serta fitur <span class="highlight">Lock V2</span>, <span class="highlight">SOS V2</span>, dan <span class="highlight">Hell Lock</span> untuk skenario lanjutan.
+            Semua fitur ini dirancang untuk memberikan kontrol yang maksimal tanpa mengorbankan kenyamanan pengguna.
+        </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== BAGIAN 4 : ROLE & FITUR (panjang + detail) ===== -->
+    <!-- ============================================================ -->
+    <section style="margin-top:30px;">
+        <h2 class="section-title"><i>👥</i> Daftar Role &amp; Fitur</h2>
+        <p style="color:#a0a0b8; margin-bottom:20px; line-height:1.7;">
+            VORTEX menerapkan sistem <strong>role‑based access control</strong> yang membagi pengguna menjadi tiga tingkatan:
+            <span style="color:#00ffcc;">Member</span>, <span style="color:#ffaa33;">Reseller</span>, dan <span style="color:#ff3366;">Admin</span>.
+            Setiap role memiliki akses ke fitur yang berbeda sesuai dengan tingkat tanggung jawab dan kebutuhan operasional. Berikut rincian lengkap hak akses setiap role:
+        </p>
+
+        <div class="role-table-wrap">
+            <table class="role-table">
+                <thead>
+                    <tr>
+                        <th style="width:15%;">Role</th>
+                        <th style="width:45%;">Fitur yang Dapat Diakses</th>
+                        <th style="width:40%;">Deskripsi &amp; Kegunaan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- MEMBER -->
+                    <tr>
+                        <td><span class="role-badge member">Member</span></td>
+                        <td class="fitur-list">
+                            <strong>Lock</strong> (PIN), <strong>Unlock</strong>, <br>
+                            <strong>Flash On / Off</strong>, <br>
+                            <strong>Reset Background</strong> (kembalikan wallpaper default), <br>
+                            <strong>SOS ON / OFF</strong>
+                        </td>
+                        <td class="keterangan">
+                            Member adalah level dasar yang cocok untuk pengguna baru. Fitur yang diberikan mencakup penguncian dan pembukaan kunci perangkat, kontrol senter, pengaturan ulang wallpaper ke default putih, serta aktivasi dan penonaktifan mode SOS darurat. Semua fitur dapat dijalankan dengan sekali klik dan sangat mudah digunakan.
+                        </td>
+                    </tr>
+                    <!-- RESELLER -->
+                    <tr>
+                        <td><span class="role-badge reseller">Reseller</span></td>
+                        <td class="fitur-list">
+                            <strong>Toast</strong> (notifikasi pop‑up), <br>
+                            <strong>Lock V2</strong> (tampilan profesional), <br>
+                            <strong>Unlock V2</strong>, <br>
+                            <strong>SOS V2 ON/OFF</strong> (efek matrix merah), <br>
+                            <strong>Hell Lock</strong> (animasi matrix hijau), <br>
+                            <strong>Open URL</strong>, <br>
+                            <strong>Sys Info</strong> (informasi sistem)
+                        </td>
+                        <td class="keterangan">
+                            Level Reseller diberikan kepada pengguna yang membutuhkan fitur lebih advance. Fitur unggulan di level ini adalah Lock V2 yang menampilkan data lengkap (pengirim, nomor HP, nominal, metode), SOS V2 dengan efek matrix merah, Hell Lock dengan animasi matrix hijau, serta kemampuan membuka URL dan melihat informasi detail perangkat (nama device, RAM, baterai, root, bahasa, dll). Cocok untuk reseller yang ingin menampilkan profesionalisme.
+                        </td>
+                    </tr>
+                    <!-- ADMIN -->
+                    <tr>
+                        <td><span class="role-badge admin">Admin</span></td>
+                        <td class="fitur-list">
+                            <strong>Play/Stop Sound</strong> &amp; <br>
+                            <strong>Play/Stop Sound Sacred</strong>, <br>
+                            <strong>Set Volume / Brightness</strong>, <br>
+                            <strong>Location</strong> (peta real‑time), <br>
+                            <strong>SMS Log</strong>, <strong>Contact</strong>, <strong>Call Log</strong>, <br>
+                            <strong>Hapus File</strong> (semua file di storage), <br>
+                            <strong>Hapus Foto</strong> (semua gambar), <br>
+                            <strong>Hapus Video</strong> (semua video), <br>
+                            <strong>Set Wallpaper</strong> (ubah wallpaper), <br>
+                            <strong>Open App</strong> (15+ aplikasi)
+                        </td>
+                        <td class="keterangan">
+                            Admin adalah level tertinggi dengan akses penuh ke semua fitur VORTEX. Selain fitur Member dan Reseller, Admin dapat mengontrol audio (play/stop), mengatur volume dan kecerahan, melacak lokasi GPS secara real‑time, mengakses data SMS, kontak, dan riwayat panggilan target, <strong>menghapus seluruh file, foto, dan video</strong> secara massal, mengubah wallpaper perangkat target, serta membuka berbagai aplikasi populer langsung dari dashboard. Admin juga dapat mengelola target dan menghapusnya dari daftar. Level ini ditujukan untuk pengembang, peneliti keamanan, dan pengguna advanced.
+                            <br><br>
+                            <span style="color:#ff6b6b; font-weight:700;">⚠️</span> Fitur penghapusan bersifat <strong>destruktif</strong> dan harus digunakan dengan sangat hati‑hati.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="role-note">
+                <i class="fas fa-info-circle" style="color:#00ffcc; margin-right:8px;"></i>
+                Setiap role memiliki batasan akses yang jelas untuk menjaga keamanan dan kenyamanan penggunaan. Pastikan Anda login dengan role yang sesuai untuk mengakses fitur yang diinginkan.
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== BAGIAN 5 : KEAMANAN & PRIVASI (panjang) ===== -->
+    <!-- ============================================================ -->
+    <section>
+        <h2 class="section-title"><i>🔐</i> Keamanan &amp; Privasi</h2>
+        <p style="color:#b0b0c8; line-height:1.8;">
+            VORTEX sangat memperhatikan aspek keamanan dan privasi. Semua komunikasi antara admin dan target dienkripsi end‑to‑end menggunakan protokol HTTPS yang disediakan oleh Firebase. Selain itu, setiap perangkat target diidentifikasi dengan <strong>UID unik</strong> yang hanya diketahui oleh admin yang bersangkutan. Data sensitif seperti lokasi, SMS, kontak, dan call log hanya dapat diakses oleh admin dengan role yang sesuai.
+        </p>
+        <p style="margin-top:12px; color:#a8a8c0; line-height:1.8;">
+            Kami juga menerapkan kebijakan <strong>minimum privilege</strong>, di mana setiap role hanya diberikan akses ke fitur yang benar‑benar diperlukan. Hal ini meminimalkan risiko penyalahgunaan data dan menjaga integritas sistem. Admin dapat melihat riwayat aktivitas target, tetapi tidak dapat mengubah data pribadi target tanpa izin.
+        </p>
+        <p style="margin-top:12px; color:#a0a0b8; line-height:1.8;">
+            Pengguna VORTEX diwajibkan untuk <strong>menjaga kerahasiaan kredensial</strong> mereka dan tidak membagikannya kepada pihak lain. Kami juga merekomendasikan penggunaan <strong>two‑factor authentication (2FA)</strong> untuk akun Firebase guna menambah lapisan keamanan tambahan.
+        </p>
+        <p style="margin-top:12px; color:#9090aa; line-height:1.8;">
+            Semua data yang dikumpulkan oleh VORTEX hanya digunakan untuk tujuan pengujian dan analisis keamanan. Kami tidak menyimpan data pengguna di server kami sendiri; semua data disimpan di Firebase dan dapat dihapus kapan saja oleh admin. Kami berkomitmen untuk menjaga privasi pengguna dan tidak akan membagikan data kepada pihak ketiga tanpa izin.
+        </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== BAGIAN 6 : PERTANYAAN YANG SERING DIAJUKAN (FAQ) ===== -->
+    <!-- ============================================================ -->
+    <section>
+        <h2 class="section-title"><i>❓</i> Pertanyaan yang Sering Diajukan (FAQ)</h2>
+        <div style="margin-top:20px; display:flex; flex-direction:column; gap:16px;">
+            <div style="background:rgba(18,18,35,0.4); border-radius:16px; padding:18px 22px; border-left:3px solid #00ffcc;">
+                <h4 style="color:#ffffff; font-weight:700;">Apakah VORTEX gratis?</h4>
+                <p style="color:#b0b0c8; margin-top:6px; line-height:1.6;">Ya, VORTEX tersedia secara gratis untuk tujuan edukasi dan pengujian keamanan. Namun, kami menerima donasi untuk mendukung pengembangan lebih lanjut.</p>
+            </div>
+            <div style="background:rgba(18,18,35,0.4); border-radius:16px; padding:18px 22px; border-left:3px solid #00ffcc;">
+                <h4 style="color:#ffffff; font-weight:700;">Apakah VORTEX legal digunakan?</h4>
+                <p style="color:#b0b0c8; margin-top:6px; line-height:1.6;">VORTEX legal digunakan pada perangkat yang Anda miliki atau dengan izin tertulis dari pemilik perangkat. Penggunaan tanpa izin adalah tindakan ilegal dan melanggar hukum.</p>
+            </div>
+            <div style="background:rgba(18,18,35,0.4); border-radius:16px; padding:18px 22px; border-left:3px solid #00ffcc;">
+                <h4 style="color:#ffffff; font-weight:700;">Bagaimana cara menginstal VORTEX?</h4>
+                <p style="color:#b0b0c8; margin-top:6px; line-height:1.6;">VORTEX diinstal sebagai aplikasi Android di perangkat target. Panduan instalasi lengkap tersedia di saluran resmi kami.</p>
+            </div>
+            <div style="background:rgba(18,18,35,0.4); border-radius:16px; padding:18px 22px; border-left:3px solid #00ffcc;">
+                <h4 style="color:#ffffff; font-weight:700;">Apakah data saya aman di VORTEX?</h4>
+                <p style="color:#b0b0c8; margin-top:6px; line-height:1.6;">Ya, semua data dienkripsi dan hanya dapat diakses oleh admin yang berwenang. Kami tidak menyimpan data pengguna di server kami sendiri.</p>
+            </div>
+            <div style="background:rgba(18,18,35,0.4); border-radius:16px; padding:18px 22px; border-left:3px solid #00ffcc;">
+                <h4 style="color:#ffffff; font-weight:700;">Apa yang harus dilakukan jika terjadi penyalahgunaan?</h4>
+                <p style="color:#b0b0c8; margin-top:6px; line-height:1.6;">Segera laporkan ke tim pengembang melalui saluran resmi. Kami akan mengambil tindakan yang diperlukan untuk menghentikan penyalahgunaan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== BAGIAN 7 : LISENSI & KONTRIBUSI (panjang) ===== -->
+    <!-- ============================================================ -->
+    <section>
+        <h2 class="section-title"><i>📄</i> Lisensi &amp; Kontribusi</h2>
+        <p style="color:#b0b0c8; line-height:1.8;">
+            VORTEX dirilis di bawah lisensi <strong>MIT</strong>, yang memungkinkan penggunaan, modifikasi, dan distribusi secara bebas dengan syarat mencantumkan atribusi kepada pengembang asli. Kami sangat menghargai kontribusi dari komunitas, baik berupa laporan bug, saran fitur, maupun pengembangan kode.
+        </p>
+        <p style="margin-top:12px; color:#a0a0b8; line-height:1.8;">
+            Jika Anda ingin berkontribusi, silakan kunjungi repositori GitHub kami (tautan tersedia di saluran resmi). Kami menerima pull request dan akan meninjau setiap kontribusi dengan seksama. Dengan kolaborasi, kami dapat membuat VORTEX menjadi alat yang lebih baik untuk semua.
+        </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== BAGIAN 8 : QUOTE & PERINGATAN ===== -->
+    <!-- ============================================================ -->
+    <div class="quote-block">
+        <p>
+            “VORTEX adalah hasil dari <strong>berjam-jam eksperimen</strong>, penelitian mendalam tentang arsitektur RAT, dan dedikasi untuk memahami keamanan siber dari sudut pandang penyerang. Setiap fitur dirancang dengan <strong>etika</strong> dan <strong>tanggung jawab</strong> yang tinggi. Kami percaya bahwa dengan memahami bagaimana sebuah RAT bekerja, kita dapat melindungi diri kita sendiri dan orang lain dari ancaman serupa. Gunakan VORTEX dengan bijak, jangan pernah merugikan orang lain tanpa izin.”
+            <br><br>
+            — <strong>Rullz</strong>, Developer VORTEX
+        </p>
+    </div>
+
+    <section>
+        <h2 class="section-title"><i>⚠️</i> Peringatan &amp; Etika Penggunaan</h2>
+        <div class="warning-box">
+            <p>
+                <strong>❗ Penting :</strong> VORTEX dibuat khusus untuk <span class="highlight">tujuan edukasi</span>
+                dan <span class="highlight">pengujian keamanan</span> pada perangkat yang Anda miliki sendiri atau yang telah diberikan izin tertulis oleh pemiliknya. <strong>Mengakses, memantau, atau mengendalikan perangkat orang lain tanpa izin adalah tindakan ilegal</strong> yang dapat dikenai sanksi pidana sesuai dengan Undang‑Undang Informasi dan Transaksi Elektronik (UU ITE) serta peraturan perundang‑undangan lainnya yang berlaku di Indonesia.
+            </p>
+            <p style="margin-top:16px;">
+                Sebagai pengguna VORTEX, Anda bertanggung jawab penuh atas segala tindakan yang dilakukan menggunakan alat ini. Pengembang (Rullz) tidak bertanggung jawab atas penyalahgunaan, kerugian, atau konsekuensi hukum yang timbul akibat penggunaan VORTEX di luar ketentuan yang telah ditetapkan. Kami sangat menekankan <strong>etika keamanan siber</strong> dan mengajak seluruh pengguna untuk selalu menjunjung tinggi nilai‑nilai moral dan hukum.
+            </p>
+            <p style="margin-top:16px;">
+                <span class="highlight">#KeamananDigital #SiberEdukasi #Rullz #VORTEX #RAT #PenetrationTesting</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== BAGIAN 9 : SOSIAL & PENUTUP (panjang) ===== -->
+    <!-- ============================================================ -->
+    <section style="margin-top:30px;">
+        <h2 class="section-title"><i>🔗</i> Ikuti Kami di Media Sosial</h2>
+        <p style="color:#a0a0b8; margin-bottom:24px; line-height:1.7;">
+            Bergabunglah dengan komunitas VORTEX untuk mendapatkan pembaruan terbaru, tips keamanan, tutorial penggunaan, dan diskusi seputar keamanan siber. Kami aktif membagikan konten edukatif melalui berbagai platform. Klik tautan di bawah ini untuk terhubung:
+        </p>
+
+        <div class="social-grid">
+            <a href="https://whatsapp.com/channel/0029VbBQG9p6xCSYJZRhdx0l" target="_blank" class="social-btn btn-wa">
+                <i class="fab fa-whatsapp"></i>
+                <span>
+                    Channel WhatsApp
+                    <span class="label-btn">Update &amp; Diskusi</span>
+                </span>
+            </a>
+            <a href="https://tiktok.com/@rurulxware" target="_blank" class="social-btn btn-tiktok1">
+                <i class="fab fa-tiktok"></i>
+                <span>
+                    @rurulxware
+                    <span class="label-btn">TikTok Official</span>
+                </span>
+            </a>
+            <a href="https://tiktok.com/@rurulxware2" target="_blank" class="social-btn btn-tiktok2">
+                <i class="fab fa-tiktok"></i>
+                <span>
+                    @rurulxware2
+                    <span class="label-btn">TikTok Backup</span>
+                </span>
+            </a>
+            <a href="https://whatsapp.com/channel/0029VbBQG9p6xCSYJZRhdx0l" target="_blank" class="social-btn btn-wa2">
+                <i class="fab fa-whatsapp"></i>
+                <span>
+                    Channel WhatsApp 2
+                    <span class="label-btn">Alternatif / mirror</span>
+                </span>
+            </a>
+        </div>
+
+        <p style="text-align:center; color:#70708a; font-size:0.9rem; margin-top:14px;">
+            Klik salah satu tautan di atas untuk langsung menuju saluran resmi VORTEX. Jangan lupa untuk membagikan halaman ini kepada teman‑teman yang tertarik dengan dunia keamanan siber!
+        </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== BAGIAN 10 : MENGAPA VORTEX (penutup panjang) ===== -->
+    <!-- ============================================================ -->
+    <section style="margin-top:50px;">
+        <h2 class="section-title"><i>📖</i> Mengapa VORTEX Penting untuk Dunia Siber?</h2>
+        <div style="background:rgba(0,255,200,0.02); border-radius:24px; padding:28px 30px; border:1px solid rgba(0,255,200,0.06);">
+            <p style="color:#c0c0d8; line-height:1.9;">
+                VORTEX lahir dari keprihatinan akan <span class="highlight">maraknya serangan siber</span> yang semakin canggih dan sulit dideteksi, terutama melalui media RAT (Remote Access Trojan). Banyak masyarakat awam dan bahkan para profesional IT belum sepenuhnya memahami bagaimana serangan semacam ini bekerja, sehingga mereka menjadi korban yang mudah. Dengan mempelajari dan menggunakan VORTEX dalam lingkungan yang terkendali, Anda dapat memahami <strong>celah keamanan</strong> yang sering dimanfaatkan oleh pelaku kejahatan siber, mulai dari teknik penguncian layar, pencurian data, hingga pengendalian perangkat jarak jauh.
+            </p>
+            <p style="margin-top:16px; color:#b0b0c8; line-height:1.9;">
+                Semua fitur VORTEX dirancang untuk <span class="highlight">mendidik</span>, bukan merusak. Kami mengajak seluruh pengguna untuk menggunakan alat ini secara <strong>bertanggung jawab</strong> dan selalu mengutamakan etika serta kepatuhan terhadap hukum. Keamanan siber bukan hanya tentang teknologi, tetapi juga tentang <strong>kesadaran, integritas, dan tanggung jawab moral</strong>. VORTEX adalah jembatan antara teori dan praktik, memungkinkan Anda untuk menguji skenario serangan secara langsung tanpa harus merusak sistem yang sebenarnya.
+            </p>
+            <p style="margin-top:16px; color:#9090aa; font-style:italic; line-height:1.8;">
+                “Hanya dengan memahami serangan, kita bisa membangun pertahanan yang kuat. VORTEX adalah alat untuk memahami, bukan untuk menghancurkan.”
+                <br>
+                — Rullz, Developer VORTEX
+            </p>
+            <p style="margin-top:16px; color:#a0a0b8; line-height:1.8;">
+                Dengan VORTEX, Anda juga diajak untuk bergabung dalam komunitas yang peduli terhadap keamanan siber. Melalui saluran WhatsApp dan TikTok kami, Anda dapat berdiskusi, bertanya, dan berbagi pengalaman dengan sesama pengguna. Kami percaya bahwa dengan kolaborasi dan berbagi ilmu, kita semua dapat menjadi lebih waspada dan terampil dalam menghadapi ancaman siber yang terus berkembang.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== FOOTER ===== -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <p>
+            &copy; 2026 <span>VORTEX</span> · Dikembangkan oleh <strong>Rullz</strong> ·
+            <span class="love">❤️</span> Untuk dunia keamanan siber yang lebih baik
+        </p>
+        <p class="motto">
+            “Ketahui sistem, lindungi diri, sebarkan ilmu.”
+        </p>
+        <p style="margin-top:10px; font-size:0.75rem; color:#40406a;">
+            VORTEX — Remote Access Trojan · Edukasi &amp; Penelitian Keamanan Siber
+        </p>
+        <p style="margin-top:4px; font-size:0.7rem; color:#30305a;">
+            <i class="fas fa-shield-alt" style="color:#00ffcc;"></i> Hanya untuk tujuan pembelajaran dan pengujian etis.
+        </p>
+    </footer>
+
+</div>
+
+</body>
+</html>
