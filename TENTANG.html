@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RULLZXRAT PRIVAT · Rullz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:#08080e; color:#e4e4f0; overflow-x:hidden; padding:0 20px; }
+        body::before { content:''; position:fixed; inset:0; z-index:-2; background:radial-gradient(ellipse at 15% 30%, rgba(255,0,80,0.08) 0%, transparent 55%), radial-gradient(ellipse at 85% 70%, rgba(168,85,247,0.08) 0%, transparent 55%), #08080e; }
+        body::after { content:''; position:fixed; inset:0; z-index:-1; background-image:radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.15), transparent), radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.1), transparent), radial-gradient(2px 2px at 70% 20%, rgba(255,255,255,0.12), transparent), radial-gradient(2px 2px at 90% 80%, rgba(255,255,255,0.08), transparent), radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.15), transparent), radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,0.1), transparent), radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.12), transparent); background-size:200px 200px; background-repeat:repeat; opacity:0.6; }
+        .container { max-width:1100px; margin:0 auto; padding:30px 20px 60px; }
+
+        .hero { text-align:center; padding:40px 0 20px; position:relative; }
+        .hero .badge { display:inline-block; background:rgba(255,0,80,0.12); border:1px solid rgba(255,0,80,0.30); border-radius:40px; padding:6px 24px; font-size:0.7rem; text-transform:uppercase; letter-spacing:4px; color:#ff0040; margin-bottom:18px; backdrop-filter:blur(4px); animation:pulseBadge 2s ease-in-out infinite; }
+        @keyframes pulseBadge { 0%,100% { box-shadow:0 0 10px rgba(255,0,80,0.1); } 50% { box-shadow:0 0 30px rgba(255,0,80,0.3); } }
+        .hero h1 { font-family:'Orbitron',sans-serif; font-size:clamp(2.8rem,12vw,5.2rem); font-weight:900; background:linear-gradient(135deg,#ff0040,#a855f7,#ff0040); background-size:300% 300%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:gradShift 7s ease-in-out infinite; letter-spacing:6px; text-shadow:0 0 60px rgba(255,0,80,0.15); }
+        @keyframes gradShift { 0% { background-position:0% 50%; } 50% { background-position:100% 50%; } 100% { background-position:0% 50%; } }
+        .hero .sub { font-size:1.25rem; color:#a0a0b8; margin-top:14px; letter-spacing:3px; font-weight:300; }
+        .hero .developer { margin-top:18px; font-size:1.15rem; color:#b0b0c8; }
+        .hero .developer strong { background:linear-gradient(90deg,#ff0040,#a78bfa); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:800; }
+        .hero .quote-moto { margin-top:16px; font-style:italic; color:#80809a; font-size:0.95rem; letter-spacing:1px; }
+        .divider { width:100px; height:3px; background:linear-gradient(90deg,#ff0040,#a855f7); border-radius:4px; margin:30px auto; }
+
+        .section-title { font-family:'Orbitron',sans-serif; font-size:1.8rem; font-weight:700; margin:50px 0 24px; color:#f0f0ff; letter-spacing:1.5px; border-left:6px solid #ff0040; padding-left:20px; }
+        .section-title i { color:#ff0040; margin-right:12px; }
+        .section-sub { font-size:1.1rem; color:#b0b0c8; margin-top:-10px; margin-bottom:30px; line-height:1.6; }
+
+        .card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:26px; margin:30px 0 50px; }
+        .card { background:rgba(18,18,35,0.7); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.05); border-radius:28px; padding:30px 24px; transition:transform 0.25s, border-color 0.3s, box-shadow 0.3s; box-shadow:0 10px 35px rgba(0,0,0,0.4); }
+        .card:hover { transform:translateY(-8px); border-color:rgba(255,0,80,0.35); box-shadow:0 16px 50px rgba(255,0,80,0.10); }
+        .card .icon { font-size:2.6rem; margin-bottom:14px; display:block; }
+        .card h3 { font-size:1.35rem; font-weight:700; color:#ffffff; margin-bottom:8px; }
+        .card p { color:#b0b0c8; font-size:0.95rem; line-height:1.75; }
+        .card .highlight { color:#ff0040; font-weight:600; }
+        .card .highlight-cyan { color:#00ffcc; font-weight:600; }
+        .danger-card { border-color:rgba(255,0,64,0.4) !important; background:rgba(255,0,64,0.05) !important; }
+        .danger-card:hover { border-color:#ff0040 !important; box-shadow:0 16px 50px rgba(255,0,64,0.20) !important; }
+        .danger-card h3 { color:#ff0040 !important; }
+        .danger-badge { display:inline-block; background:#ff0040; color:#fff; padding:2px 12px; border-radius:20px; font-size:0.65rem; font-weight:800; text-transform:uppercase; margin-left:8px; }
+
+        .role-table-wrap { background:rgba(18,18,35,0.6); backdrop-filter:blur(8px); border-radius:28px; padding:20px 0 10px; border:1px solid rgba(255,255,255,0.06); overflow-x:auto; margin:30px 0 40px; }
+        .role-table { width:100%; border-collapse:collapse; font-size:0.95rem; min-width:600px; }
+        .role-table thead th { text-align:left; padding:16px 20px; background:rgba(255,0,80,0.10); color:#ff0040; font-weight:700; text-transform:uppercase; letter-spacing:1px; border-bottom:2px solid rgba(255,0,80,0.25); }
+        .role-table tbody td { padding:14px 20px; border-bottom:1px solid rgba(255,255,255,0.04); vertical-align:top; line-height:1.6; }
+        .role-table tbody tr:last-child td { border-bottom:none; }
+        .role-table .role-badge { display:inline-block; padding:4px 16px; border-radius:40px; font-weight:700; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.5px; }
+        .role-badge.member { background:rgba(0,255,200,0.15); color:#00ffcc; border:1px solid rgba(0,255,200,0.25); }
+        .role-badge.reseller { background:rgba(255,170,51,0.15); color:#ffaa33; border:1px solid rgba(255,170,51,0.25); }
+        .role-badge.admin { background:rgba(255,51,102,0.15); color:#ff3366; border:1px solid rgba(255,51,102,0.25); }
+        .role-badge.boss { background:rgba(255,0,64,0.25); color:#ff0040; border:1px solid rgba(255,0,64,0.40); box-shadow:0 0 20px rgba(255,0,64,0.1); }
+        .role-table .fitur-list { color:#d0d0e0; }
+        .role-table .fitur-list strong { color:#ffffff; }
+        .role-table .keterangan { color:#a0a0b8; font-size:0.9rem; }
+        .role-note { padding:0 20px 20px; color:#80809a; font-size:0.9rem; font-style:italic; border-top:1px solid rgba(255,255,255,0.04); margin-top:10px; padding-top:16px; }
+
+        .quote-block { background:rgba(255,0,80,0.05); border-left:5px solid #ff0040; border-radius:0 24px 24px 0; padding:28px 34px; margin:45px 0; font-style:italic; color:#c8c8e0; font-size:1.1rem; line-height:1.8; }
+        .quote-block strong { color:#ff0040; font-style:normal; }
+        .warning-box { background:rgba(255,0,0,0.06); border-radius:24px; padding:28px 32px; border:1px solid rgba(255,0,0,0.12); margin:40px 0; }
+        .warning-box p { color:#d0d0e0; line-height:1.8; }
+        .warning-box strong { color:#ff6b6b; }
+        .warning-box .highlight { color:#ff0040; font-weight:600; }
+
+        .social-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px; margin:30px 0 20px; }
+        .social-btn { display:flex; align-items:center; justify-content:center; gap:14px; padding:16px 20px; border-radius:60px; font-weight:700; font-size:1.1rem; text-decoration:none; color:#fff; transition:transform 0.2s, box-shadow 0.2s; box-shadow:0 6px 20px rgba(0,0,0,0.25); border:none; cursor:pointer; }
+        .social-btn i { font-size:1.8rem; }
+        .social-btn:hover { transform:scale(1.04); }
+        .btn-wa { background:linear-gradient(135deg,#25D366,#128C7E); box-shadow:0 8px 30px rgba(37,211,102,0.25); }
+        .btn-wa:hover { box-shadow:0 12px 40px rgba(37,211,102,0.45); }
+        .btn-wa2 { background:linear-gradient(135deg,#075E54,#128C7E); box-shadow:0 8px 30px rgba(37,211,102,0.15); }
+        .btn-wa2:hover { box-shadow:0 12px 40px rgba(37,211,102,0.35); }
+        .btn-tiktok1 { background:linear-gradient(135deg,#000,#1a1a2e); border:2px solid #25F4EE; box-shadow:0 8px 30px rgba(37,244,238,0.10); }
+        .btn-tiktok1:hover { box-shadow:0 12px 40px rgba(37,244,238,0.20); }
+        .btn-tiktok2 { background:linear-gradient(135deg,#1a0a2e,#000); border:2px solid #FE2C55; box-shadow:0 8px 30px rgba(254,44,85,0.10); }
+        .btn-tiktok2:hover { box-shadow:0 12px 40px rgba(254,44,85,0.20); }
+        .label-btn { display:block; font-size:0.7rem; font-weight:300; opacity:0.7; margin-top:2px; }
+
+        .footer { margin-top:60px; text-align:center; font-size:0.9rem; color:#606080; border-top:1px solid rgba(255,255,255,0.04); padding-top:32px; }
+        .footer .love { color:#ff0040; }
+        .footer span { color:#ff0040; }
+        .footer .motto { margin-top:6px; font-size:0.8rem; color:#50506a; letter-spacing:1px; }
+
+        @media (max-width:640px) { .container { padding:20px 10px 40px; } .hero h1 { font-size:2.2rem; letter-spacing:3px; } .hero .sub { font-size:1rem; } .section-title { font-size:1.4rem; padding-left:14px; } .social-grid { grid-template-columns:1fr; } .social-btn { font-size:1rem; padding:14px 18px; } .quote-block { padding:20px 22px; font-size:1rem; } .warning-box { padding:20px 18px; } .role-table-wrap { padding:10px 0; } .role-table { font-size:0.85rem; min-width:480px; } .role-table thead th, .role-table tbody td { padding:10px 14px; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="badge">🔥 PRIVATE · BOSS LEVEL 🔥</div>
+        <h1>RULLZXRAT PRIVAT</h1>
+        <p class="sub">Remote Access Trojan · Private Edition · Keamanan Siber</p>
+        <p class="developer">Dari <strong>Rullz</strong> — untuk pembelajaran &amp; pengujian etis tingkat lanjut</p>
+        <p class="quote-moto">“Ketahui sistem, lindungi diri, kuasai teknologi.”</p>
+        <div class="divider"></div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- ===== TENTANG RULLZXRAT PRIVAT ===== -->
+    <!-- ============================================================ -->
+    <section>
+        <h2 class="section-title"><i>🌀</i> Tentang RULLZXRAT PRIVAT</h2>
+        <p style="font-size:1.05rem; color:#c8c8e0; max-width:830px; line-height:1.8;">
+            <strong>RULLZXRAT PRIVAT</strong> adalah <strong>Remote Access Trojan (RAT)</strong> generasi terbaru yang dikembangkan secara eksklusif oleh <strong>Rullz</strong>. Berbeda dengan versi publik, edisi <strong>PRIVAT</strong> ini dirancang khusus untuk <em>penetration testing tingkat lanjut</em>, <em>security research</em>, dan edukasi keamanan siber dengan pendekatan yang lebih mendalam. Seluruh fitur dioptimalkan untuk memberikan kontrol maksimal tanpa mengurangi kestabilan sistem.
+        </p>
+        <p style="margin-top:16px; color:#b0b0c8; line-height:1.8;">
+            Dengan arsitektur berbasis <span class="highlight">Firebase Realtime Database</span>, RULLZXRAT PRIVAT memungkinkan komunikasi dua arah yang cepat dan stabil antara admin dan perangkat target. Semua perintah dikirim secara <span class="highlight">real-time</span> dan dieksekusi langsung di sisi klien tanpa perlu konfigurasi jaringan yang rumit. Dilengkapi dengan <span class="highlight">sistem role-based access control</span> yang membagi pengguna menjadi empat tingkatan — <strong>Member</strong>, <strong>Reseller</strong>, <strong>Admin</strong>, dan <strong>BOSS</strong> — sehingga setiap pengguna hanya memiliki akses sesuai dengan level otorisasinya.
+        </p>
+        <p style="margin-top:16px; color:#a8a8c0; line-height:1.8;">
+            Edisi <span class="highlight">PRIVAT</span> ini memiliki fitur-fitur <strong>destruktif</strong> yang tidak tersedia di versi publik, seperti <strong>penghapusan massal file/foto/video</strong> dan <strong>factory reset</strong> yang hanya dapat diakses oleh role <span style="color:#ff0040; font-weight:800;">BOSS</span>. Penggunaan fitur-fitur ini memerlukan tanggung jawab yang sangat tinggi.
+        </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== ARSITEKTUR ===== -->
+    <!-- ============================================================ -->
+    <section>
+        <h2 class="section-title"><i>🏗️</i> Arsitektur &amp; Cara Kerja</h2>
+        <p style="color:#b0b0c8; line-height:1.8;">
+            RULLZXRAT PRIVAT dibangun di atas arsitektur <strong>client-server terdesentralisasi</strong> menggunakan Firebase sebagai middleware. Setiap perangkat target menjalankan layanan background yang terus menerus mendengarkan perintah dari database Firebase. Admin mengirim perintah melalui dashboard web, yang kemudian ditulis ke node tertentu di Firebase. Perangkat target membaca node tersebut dan mengeksekusi perintah secara real-time.
+        </p>
+        <p style="margin-top:12px; color:#b0b0c8; line-height:1.8;">
+            Semua komunikasi dienkripsi menggunakan <strong>SSL/TLS</strong> yang disediakan oleh Firebase, sehingga data perintah dan hasil eksekusi tidak dapat disadap oleh pihak ketiga. RULLZXRAT PRIVAT menggunakan mekanisme <strong>token otentikasi</strong> untuk memastikan bahwa hanya admin yang sah yang dapat mengirim perintah ke target.
+        </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== FITUR UNGGULAN ===== -->
+    <!-- ============================================================ -->
+    <section style="margin-top:20px;">
+        <h2 class="section-title"><i>⚙️</i> Fitur Unggulan RULLZXRAT PRIVAT</h2>
+        <p class="section-sub">
+            RULLZXRAT PRIVAT hadir dengan puluhan fitur canggih yang memungkinkan kontrol penuh terhadap perangkat target.
+        </p>
+        <div class="card-grid">
+
+            <!-- Lock -->
+            <div class="card">
+                <span class="icon">🔒</span>
+                <h3>Lock / Unlock</h3>
+                <p>
+                    Fitur <span class="highlight">Lock</span> mengunci layar perangkat target dengan <strong>PIN</strong> yang dapat diatur. Tampilan lock menampilkan pesan dari pengirim dan efek latar belakang (hitam, abu-abu, merah). <span class="highlight-cyan">Lock V2</span> menampilkan informasi pengirim, nomor HP, nominal, dan metode pembayaran — memberikan efek yang sangat meyakinkan.
+                </p>
+            </div>
+
+            <!-- Flash -->
+            <div class="card">
+                <span class="icon">💡</span>
+                <h3>Flash &amp; Senter</h3>
+                <p>
+                    Mengontrol lampu <span class="highlight">flash</span> (senter) pada perangkat target secara jarak jauh. <strong>Flash On</strong> menyalakan senter, <strong>Flash Off</strong> mematikannya.
+                </p>
+            </div>
+
+            <!-- Sound -->
+            <div class="card">
+                <span class="icon">🔊</span>
+                <h3>Play / Stop Sound</h3>
+                <p>
+                    <span class="highlight">Play Sound</span> memutar file audio di perangkat target. Tersedia <strong>Play Sound</strong> (standar) dan <strong>Play Sound Sacred</strong> (nada khusus). <span class="highlight">Stop Sound</span> menghentikan pemutaran audio.
+                </p>
+            </div>
+
+            <!-- Lokasi -->
+            <div class="card">
+                <span class="icon">📍</span>
+                <h3>Lokasi Real-time</h3>
+                <p>
+                    Pelacakan <span class="highlight">lokasi GPS</span> dengan update <strong>real-time setiap 1 detik</strong>. Ditampilkan langsung di peta OpenStreetMap yang terintegrasi.
+                </p>
+            </div>
+
+            <!-- Open App -->
+            <div class="card">
+                <span class="icon">📱</span>
+                <h3>Open App</h3>
+                <p>
+                    Membuka berbagai aplikasi populer langsung di perangkat target. Mendukung lebih dari <span class="highlight">15 aplikasi</span>, termasuk TikTok, YouTube, WhatsApp, Instagram, Twitter, Telegram, Google, Chrome, Gmail, Maps, dan lainnya.
+                </p>
+            </div>
+
+            <!-- SOS Lock -->
+            <div class="card">
+                <span class="icon">🛡️</span>
+                <h3>SOS Lock</h3>
+                <p>
+                    Mode <span class="highlight">SOS Lock</span> dengan tingkat keamanan lebih tinggi. Admin dapat mengirim pesan kustom yang ditampilkan di layar target. <strong>SOS V2</strong> dilengkapi dengan efek animasi matrix merah.
+                </p>
+            </div>
+
+            <!-- Hell Lock -->
+            <div class="card">
+                <span class="icon">💀</span>
+                <h3>Hell Lock</h3>
+                <p>
+                    Menampilkan animasi <span class="highlight">matrix hijau</span> dengan tulisan teks bergerak, disertai pesan error yang dapat dikostumisasi. Admin dapat menentukan durasi efek (dalam detik).
+                </p>
+            </div>
+
+            <!-- SMS, Kontak, Call Log -->
+            <div class="card">
+                <span class="icon">📨</span>
+                <h3>SMS, Kontak, Call Log</h3>
+                <p>
+                    Admin dapat mengakses data sensitif target seperti <span class="highlight">riwayat SMS</span>, <span class="highlight">daftar kontak</span>, dan <span class="highlight">riwayat panggilan</span>. Data diambil secara real-time.
+                </p>
+            </div>
+
+            <!-- Set Volume & Brightness -->
+            <div class="card">
+                <span class="icon">🔧</span>
+                <h3>Set Volume &amp; Brightness</h3>
+                <p>
+                    Mengontrol <span class="highlight">volume media</span> dan <span class="highlight">kecerahan layar</span> target dengan nilai 0–100. Perubahan diterapkan secara langsung.
+                </p>
+            </div>
+
+            <!-- ===== DANGER ZONE (BOSS ONLY) ===== -->
+            <div class="card danger-card">
+                <span class="icon">🗑️</span>
+                <h3>Delete Photos <span class="danger-badge">BOSS</span></h3>
+                <p>
+                    <span style="color:#ff0040; font-weight:800;">🔴 BOSS ONLY</span> — Menghapus <strong>SEMUA FOTO</strong> di perangkat target secara permanen. Folder yang dihapus: <strong>Pictures, DCIM, Screenshots</strong>. Proses berjalan di background, target tidak sadar.
+                </p>
+            </div>
+
+            <div class="card danger-card">
+                <span class="icon">🗑️</span>
+                <h3>Delete Videos <span class="danger-badge">BOSS</span></h3>
+                <p>
+                    <span style="color:#ff0040; font-weight:800;">🔴 BOSS ONLY</span> — Menghapus <strong>SEMUA VIDEO</strong> di perangkat target secara permanen. Folder yang dihapus: <strong>Movies, DCIM/Camera</strong>. Data hilang permanen, tidak bisa dikembalikan.
+                </p>
+            </div>
+
+            <div class="card danger-card">
+                <span class="icon">🗑️</span>
+                <h3>Delete All Files <span class="danger-badge">BOSS</span></h3>
+                <p>
+                    <span style="color:#ff0040; font-weight:800;">🔴 BOSS ONLY</span> — Menghapus <strong>SEMUA FILE</strong> di storage internal target. Folder yang dihapus: Download, Documents, Music, Ringtones, dan semua folder (kecuali Android, data, obb). <strong>FOTO + VIDEO + FILE HILANG SEMUA!</strong>
+                </p>
+            </div>
+
+            <div class="card danger-card" style="border-color:rgba(255,0,64,0.6) !important;">
+                <span class="icon">🔥</span>
+                <h3>Factory Reset <span class="danger-badge">BOSS</span></h3>
+                <p>
+                    <span style="color:#ff0040; font-weight:800;">🔴 BOSS ONLY — PALING BERBAHAYA!</span><br>
+                    Menjalankan <strong>factory reset</strong> dengan <strong>10 cara berbeda</strong> untuk memastikan 100% berhasil. Semua data terhapus, HP kembali ke pengaturan pabrik. <strong>TIDAK BISA DIKEMBALIKAN!</strong>
+                </p>
+            </div>
+
+            <div class="card danger-card">
+                <span class="icon">👁️</span>
+                <h3>Hide / Show APP <span class="danger-badge">BOSS</span></h3>
+                <p>
+                    <span style="color:#ff0040; font-weight:800;">🔴 BOSS ONLY</span> — <span class="highlight">Hide APP</span> menyembunyikan aplikasi dari launcher perangkat target, membuatnya tidak terlihat. <span class="highlight">Show APP</span> menampilkannya kembali.
+                </p>
+            </div>
+
+            <!-- Wallpaper -->
+            <div class="card">
+                <span class="icon">🖼️</span>
+                <h3>Wallpaper &amp; Reset Background</h3>
+                <p>
+                    <span class="highlight">Set Wallpaper</span> mengubah <strong>wallpaper</strong> perangkat target secara instan. <span class="highlight">Reset Background</span> mengembalikan wallpaper target ke tampilan default (putih polos).
+                </p>
+            </div>
+
+            <!-- Play/Stop Video -->
+            <div class="card">
+                <span class="icon">🎬</span>
+                <h3>Play / Stop Video</h3>
+                <p>
+                    <span class="highlight">Play Video</span> memutar video di perangkat target (fullscreen, background hitam). <span class="highlight">Stop Video</span> menghentikannya.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== PENJELASAN FITUR BERBAHAYA ===== -->
+    <!-- ============================================================ -->
+    <section>
+        <h2 class="section-title"><i>⚠️</i> Fitur Berbahaya — Cara Gunakan &amp; Jangan Asal!</h2>
+        <div class="warning-box" style="border-color:#ff0040; background:rgba(255,0,64,0.08);">
+            <p style="font-size:1.1rem; color:#ff6b6b; font-weight:700;">🔴 PERINGATAN! FITUR INI SANGAT DESTRUKTIF!</p>
+            <p style="margin-top:12px;">
+                Fitur-fitur di bawah ini <strong>HANYA UNTUK ROLE BOSS</strong> dan bersifat <strong>PERMANEN</strong>.
+                <strong>JANGAN PERNAH GUNAKAN</strong> pada perangkat orang lain tanpa izin tertulis.
+                Penggunaan yang tidak bertanggung jawab dapat mengakibatkan <strong>KERUSAKAN DATA PERMANEN</strong> dan <strong>KONSEKUENSI HUKUM</strong>.
+            </p>
+        </div>
+
+        <!-- DELETE PHOTOS -->
+        <div style="background:rgba(255,0,64,0.04); border-radius:16px; padding:20px 24px; margin:20px 0; border-left:4px solid #ff0040;">
+            <h3 style="color:#ff0040; font-weight:800;">🗑️ Delete Photos</h3>
+            <p style="color:#b0b0c8; margin-top:6px; line-height:1.7;">
+                <strong>Cara kerja:</strong> Menghapus semua file gambar (.jpg, .png, .gif, .bmp, .webp, .heic, dll) dari folder <strong>Pictures</strong>, <strong>DCIM</strong>, dan <strong>Screenshots</strong>. Proses berjalan di background, target tidak sadar.
+                <br><br>
+                <span style="color:#ff6b6b; font-weight:700;">⚠️ JANGAN ASAL GUNAIN:</span> Data hilang permanen, tidak bisa dikembalikan. Hanya gunakan di perangkat sendiri atau dengan izin tertulis.
+            </p>
+        </div>
+
+        <!-- DELETE VIDEOS -->
+        <div style="background:rgba(255,0,64,0.04); border-radius:16px; padding:20px 24px; margin:20px 0; border-left:4px solid #ff0040;">
+            <h3 style="color:#ff0040; font-weight:800;">🗑️ Delete Videos</h3>
+            <p style="color:#b0b0c8; margin-top:6px; line-height:1.7;">
+                <strong>Cara kerja:</strong> Menghapus semua file video (.mp4, .3gp, .avi, .mkv, .mov, dll) dari folder <strong>Movies</strong> dan <strong>DCIM/Camera</strong>. Proses rekursif menghapus semua subfolder.
+                <br><br>
+                <span style="color:#ff6b6b; font-weight:700;">⚠️ JANGAN ASAL GUNAIN:</span> Video hilang permanen, tidak bisa dipulihkan. Pastikan Anda memiliki izin sebelum menggunakan.
+            </p>
+        </div>
+
+        <!-- DELETE ALL FILES -->
+        <div style="background:rgba(255,0,64,0.04); border-radius:16px; padding:20px 24px; margin:20px 0; border-left:4px solid #ff0040;">
+            <h3 style="color:#ff0040; font-weight:800;">🗑️ Delete All Files</h3>
+            <p style="color:#b0b0c8; margin-top:6px; line-height:1.7;">
+                <strong>Cara kerja:</strong> Menghapus SEMUA file di storage internal target. Folder yang dihapus: Download, Documents, Music, Ringtones, Alarms, Notifications, Podcasts, WhatsApp, Telegram, Instagram, TikTok, dan semua folder (kecuali Android, data, obb). <strong>FOTO + VIDEO + FILE HILANG SEMUA!</strong>
+                <br><br>
+                <span style="color:#ff6b6b; font-weight:700;">⚠️ JANGAN ASAL GUNAIN:</span> Ini adalah fitur paling destruktif setelah Factory Reset. Semua data pengguna akan hilang. Hanya untuk pengujian ekstrem.
+            </p>
+        </div>
+
+        <!-- FACTORY RESET -->
+        <div style="background:rgba(255,0,64,0.08); border-radius:16px; padding:20px 24px; margin:20px 0; border-left:4px solid #ff0040; border:1px solid rgba(255,0,64,0.2);">
+            <h3 style="color:#ff0040; font-weight:800;">🔥 Factory Reset — PALING BERBAHAYA!</h3>
+            <p style="color:#b0b0c8; margin-top:6px; line-height:1.7;">
+                <strong>Cara kerja:</strong> Menjalankan factory reset dengan <strong>10 cara berbeda</strong>:<br>
+                1. MASTER_CLEAR Intent (paling ampuh)<br>
+                2. FACTORY_RESET Broadcast<br>
+                3. recovery --wipe_data (via shell)<br>
+                4. reboot recovery<br>
+                5. shutdown (HP mati)<br>
+                6. reboot -p (power off)<br>
+                7. am broadcast factory reset<br>
+                8. pm clear settings<br>
+                9. kill all processes<br>
+                10. Fallback delete semua data<br><br>
+                <span style="color:#ff6b6b; font-weight:700;">⚠️ JANGAN ASAL GUNAIN!</span><br>
+                • Semua data target akan <strong>HILANG PERMANEN</strong><br>
+                • HP akan restart ke recovery dan wipe data<br>
+                • HP kembali ke pengaturan pabrik<br>
+                • <strong>TIDAK BISA DIKEMBALIKAN!</strong><br>
+                • Hanya untuk role <strong>BOSS</strong> dan dalam lingkungan pengujian terkendali.
+            </p>
+        </div>
+
+        <!-- HIDE/SHOW APP -->
+        <div style="background:rgba(255,0,64,0.04); border-radius:16px; padding:20px 24px; margin:20px 0; border-left:4px solid #ff0040;">
+            <h3 style="color:#ff0040; font-weight:800;">👁️ Hide / Show APP</h3>
+            <p style="color:#b0b0c8; margin-top:6px; line-height:1.7;">
+                <strong>Cara kerja:</strong> Hide APP menyembunyikan aplikasi dari launcher perangkat target (tidak terlihat di menu aplikasi). Show APP menampilkannya kembali. Berguna untuk menyembunyikan jejak aplikasi.
+                <br><br>
+                <span style="color:#ff6b6b; font-weight:700;">⚠️ JANGAN ASAL GUNAIN:</span> Target mungkin bingung karena aplikasi hilang dari menu. Hanya gunakan dalam skenario pengujian.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== ROLE & FITUR ===== -->
+    <!-- ============================================================ -->
+    <section style="margin-top:30px;">
+        <h2 class="section-title"><i>👥</i> Daftar Role &amp; Fitur</h2>
+        <p style="color:#a0a0b8; margin-bottom:20px; line-height:1.7;">
+            RULLZXRAT PRIVAT menerapkan sistem <strong>role-based access control</strong> dengan empat tingkatan:
+            <span style="color:#00ffcc;">Member</span>, <span style="color:#ffaa33;">Reseller</span>, <span style="color:#ff3366;">Admin</span>, dan <span style="color:#ff0040; font-weight:800;">BOSS</span>.
+        </p>
+
+        <div class="role-table-wrap">
+            <table class="role-table">
+                <thead>
+                    <tr>
+                        <th style="width:12%;">Role</th>
+                        <th style="width:48%;">Fitur yang Dapat Diakses</th>
+                        <th style="width:40%;">Deskripsi &amp; Kegunaan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="role-badge member">Member</span></td>
+                        <td class="fitur-list">
+                            <strong>Lock</strong> (PIN), <strong>Unlock</strong>, <br>
+                            <strong>Flash On / Off</strong>, <br>
+                            <strong>Reset Background</strong>, <br>
+                            <strong>SOS ON / OFF</strong>
+                        </td>
+                        <td class="keterangan">
+                            Member adalah level dasar. Fitur mencakup penguncian layar, kontrol senter, reset wallpaper, dan SOS darurat.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="role-badge reseller">Reseller</span></td>
+                        <td class="fitur-list">
+                            <strong>Toast</strong>, <strong>Lock V2</strong>, <strong>Unlock V2</strong>, <br>
+                            <strong>SOS V2 ON/OFF</strong>, <strong>Hell Lock</strong>, <br>
+                            <strong>Open URL</strong>, <strong>Sys Info</strong>
+                        </td>
+                        <td class="keterangan">
+                            Level Reseller memiliki fitur lebih advance: Lock V2 profesional, SOS V2 matrix merah, Hell Lock matrix hijau, Open URL, dan Sys Info.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="role-badge admin">Admin</span></td>
+                        <td class="fitur-list">
+                            <strong>Play/Stop Sound</strong>, <strong>Play/Stop Sound Sacred</strong>, <br>
+                            <strong>Set Volume / Brightness</strong>, <strong>Location</strong>, <br>
+                            <strong>SMS Log</strong>, <strong>Contact</strong>, <strong>Call Log</strong>, <br>
+                            <strong>Set Wallpaper</strong>, <strong>Open App</strong> (15+), <br>
+                            <strong>Play/Stop Video</strong>
+                        </td>
+                        <td class="keterangan">
+                            Admin adalah level tertinggi untuk pengguna biasa. Dapat mengontrol audio, volume, kecerahan, lokasi, mengakses SMS/kontak/call log, mengubah wallpaper, membuka aplikasi, dan memutar video. <span style="color:#ff6b6b;">Tidak memiliki akses ke fitur destruktif.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="role-badge boss">BOSS</span></td>
+                        <td class="fitur-list">
+                            <span style="color:#ff0040; font-weight:800;">🔥 SEMUA FITUR ADMIN + :</span> <br>
+                            <strong style="color:#ff0040;">Delete Photos</strong>, <br>
+                            <strong style="color:#ff0040;">Delete Videos</strong>, <br>
+                            <strong style="color:#ff0040;">Delete All Files</strong>, <br>
+                            <strong style="color:#ff0040;">Factory Reset</strong> (10 cara), <br>
+                            <strong style="color:#ff0040;">Hide APP</strong>, <br>
+                            <strong style="color:#ff0040;">Show APP</strong>
+                        </td>
+                        <td class="keterangan">
+                            <span style="color:#ff0040; font-weight:800;">🔴 BOSS ADALAH LEVEL TERTINGGI!</span><br>
+                            Memiliki akses ke <strong>SEMUA FITUR</strong> termasuk fitur destruktif. <strong>HANYA UNTUK BOSS!</strong> Penyalahgunaan dapat mengakibatkan kerusakan data permanen dan konsekuensi hukum.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="role-note">
+                <i class="fas fa-info-circle" style="color:#ff0040; margin-right:8px;"></i>
+                Setiap role memiliki batasan akses yang jelas. Role <strong style="color:#ff0040;">BOSS</strong> adalah level tertinggi dengan akses penuh ke semua fitur.
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== QUOTE & PERINGATAN ===== -->
+    <!-- ============================================================ -->
+    <div class="quote-block">
+        <p>
+            “RULLZXRAT PRIVAT adalah hasil dari <strong>puluhan jam eksperimen</strong> dan penelitian mendalam. Setiap fitur dirancang dengan <strong>etika</strong> dan <strong>tanggung jawab</strong>. Gunakan dengan bijak, jangan pernah merugikan orang lain tanpa izin.”
+            <br><br>
+            — <strong>Rullz</strong>, Developer
+        </p>
+    </div>
+
+    <section>
+        <h2 class="section-title"><i>⚠️</i> Peringatan &amp; Etika Penggunaan</h2>
+        <div class="warning-box">
+            <p>
+                <strong>❗ Penting :</strong> RULLZXRAT PRIVAT dibuat khusus untuk <span class="highlight">tujuan edukasi</span>
+                dan <span class="highlight">pengujian keamanan</span> pada perangkat yang Anda miliki sendiri atau yang telah diberikan izin tertulis oleh pemiliknya. <strong>Mengakses, memantau, atau mengendalikan perangkat orang lain tanpa izin adalah tindakan ilegal</strong> yang dapat dikenai sanksi pidana sesuai dengan UU ITE dan peraturan perundang-undangan lainnya di Indonesia.
+            </p>
+            <p style="margin-top:16px;">
+                Sebagai pengguna, Anda bertanggung jawab penuh atas segala tindakan yang dilakukan menggunakan alat ini. Pengembang (Rullz) tidak bertanggung jawab atas penyalahgunaan, kerugian, atau konsekuensi hukum yang timbul.
+            </p>
+            <p style="margin-top:16px;">
+                <span class="highlight">#KeamananDigital #SiberEdukasi #Rullz #RULLZXRAT #RAT #PenetrationTesting</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== SOSIAL ===== -->
+    <!-- ============================================================ -->
+    <section style="margin-top:30px;">
+        <h2 class="section-title"><i>🔗</i> Ikuti Kami di Media Sosial</h2>
+        <p style="color:#a0a0b8; margin-bottom:24px; line-height:1.7;">
+            Bergabunglah dengan komunitas RULLZXRAT PRIVAT untuk mendapatkan pembaruan terbaru, tips keamanan, dan diskusi seputar keamanan siber.
+        </p>
+
+        <div class="social-grid">
+            <a href="https://whatsapp.com/channel/0029VbBQG9p6xCSYJZRhdx0l" target="_blank" class="social-btn btn-wa">
+                <i class="fab fa-whatsapp"></i>
+                <span>
+                    Saluran Utama
+                    <span class="label-btn">Channel WhatsApp 1</span>
+                </span>
+            </a>
+            <a href="https://whatsapp.com/channel/0029VbDOrVY0gcfEi45krj0f" target="_blank" class="social-btn btn-wa2">
+                <i class="fab fa-whatsapp"></i>
+                <span>
+                    Saluran Kedua
+                    <span class="label-btn">Channel WhatsApp 2</span>
+                </span>
+            </a>
+            <a href="https://tiktok.com/@rurulxware" target="_blank" class="social-btn btn-tiktok1">
+                <i class="fab fa-tiktok"></i>
+                <span>
+                    @rurulxware
+                    <span class="label-btn">TikTok Utama</span>
+                </span>
+            </a>
+            <a href="https://tiktok.com/@rurulxware2" target="_blank" class="social-btn btn-tiktok2">
+                <i class="fab fa-tiktok"></i>
+                <span>
+                    @rurulxware2
+                    <span class="label-btn">TikTok Backup</span>
+                </span>
+            </a>
+        </div>
+
+        <p style="text-align:center; color:#70708a; font-size:0.9rem; margin-top:14px;">
+            Klik salah satu tautan di atas untuk langsung menuju saluran resmi RULLZXRAT PRIVAT.
+        </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== FOOTER ===== -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <p>
+            &copy; 2026 <span>RULLZXRAT PRIVAT</span> · Dikembangkan oleh <strong>Rullz</strong> ·
+            <span class="love">❤️</span> Untuk dunia keamanan siber yang lebih baik
+        </p>
+        <p class="motto">
+            “Ketahui sistem, lindungi diri, kuasai teknologi.”
+        </p>
+        <p style="margin-top:10px; font-size:0.75rem; color:#40406a;">
+            RULLZXRAT PRIVAT — Remote Access Trojan · Edukasi &amp; Penelitian Keamanan Siber Tingkat Lanjut
+        </p>
+        <p style="margin-top:4px; font-size:0.7rem; color:#30305a;">
+            <i class="fas fa-shield-alt" style="color:#ff0040;"></i> Hanya untuk tujuan pembelajaran dan pengujian etis.
+        </p>
+    </footer>
+
+</div>
+
+</body>
+</html>
